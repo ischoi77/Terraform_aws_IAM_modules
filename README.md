@@ -1,4 +1,5 @@
 # AWS Terraform provider 5.45.0 용 IAM 모듈
+* Terraform v1.9.x 사용
 
 * 메인 컨셉
     
@@ -51,5 +52,6 @@
   * policy_files/
 
     각 서브폴더 user_policies, group_policies 에 용도에 맞게 정책 이름으로 사용할 파일명의 json 파일을 문법에 맞도록 넣어준다.
+
 
 

@@ -1,6 +1,11 @@
 # AWS Terraform provider 5.45.0 용 IAM 모듈
 * Terraform v1.9.x 사용
 
+* 모듈버전 구분
+  1. Ver.1 : 단순 모듈
+  2. Ver.2 : for_each 사용한 반복문 구조
+  3. Ver.3 : Ver.2 + CSV(또는 텍스트파일)데이터형 변수 사용
+
 * 메인 컨셉
     
     1. 변수 분리 tfvars 파일 policy json 파일과 csv 파일 사용
@@ -52,6 +57,7 @@
   * policy_files/
 
     각 서브폴더 user_policies, group_policies 에 용도에 맞게 정책 이름으로 사용할 파일명의 json 파일을 문법에 맞도록 넣어준다.
+
 
 
 

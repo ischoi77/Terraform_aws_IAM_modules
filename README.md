@@ -1,10 +1,9 @@
 # AWS Terraform provider 5.45.0 용 IAM 모듈
 
 * 메인 컨셉
-
-    1. 원격 모듈 사용 (git repo, terraform registry 등)
-    2. 변수 분리 tfvars 파일 policy json 파일과 csv 파일 사용
-    3. 모듈 호출 구문 단순화
+    
+    1. 변수 분리 tfvars 파일 policy json 파일과 csv 파일 사용
+    2. 모듈 호출 구문 단순화
 
 * 경로 구조
 
@@ -52,4 +51,5 @@
   * policy_files/
 
     각 서브폴더 user_policies, group_policies 에 용도에 맞게 정책 이름으로 사용할 파일명의 json 파일을 문법에 맞도록 넣어준다.
+
 

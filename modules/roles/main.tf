@@ -1,17 +1,16 @@
+/*
+Title: 대규모 infra 구성 및 관리를 위한 AWS IAM 모듈
+Author: 최인석(Choi In-seok)
+Email: ischoi77@gmail.com, knight7711@naver.com
+Created: 2025-07-15
+Description: AWS IAM Roles 모듈
+repo_url: https://github.com/ischoi77/Terraform_aws_IAM_modules
+Version: v1.0.0
+*/
+
+
 locals {
   roles_raw = csvdecode(file(var.roles_csv_file))
-
-  # roles = {
-  #   for r in local.roles_raw : r.name => {
-  #     name                 = r.name
-  #     description          = try(r.description, null)
-  #     assume_file          = r.assume_policy_file
-  #     policy_names         = r.policies == "" ? [] : split(",", r.policies)
-  #     path                 = try(r.path, var.default_path)
-  #     max_session_duration = try(tonumber(r.max_session_duration), null)
-  #     tags                 = local.parse_tags(try(r.tags, ""))
-  #     }
-  # }
   roles = {
     for r in local.roles_raw : r.name => {
       name                 = r.name
@@ -97,28 +96,6 @@ resource "aws_iam_role" "this" {
     ignore_changes = [ description ]
   }
 }
-
-# resource "aws_iam_role" "this" {
-#   for_each = local.roles_with_policy_file
-
-#   name               = each.key
-#   assume_role_policy = file(each.value.assume_policy_path)
-#   description        = each.key
-#   tags = merge(var.common_tags, each.value.tags)
-
-#   lifecycle {
-#     ignore_changes = [ description ]
-#   }
-# }
-
-
-# resource "aws_iam_role_policy" "inline" {
-#   for_each = local.inline_policy_map
-
-#   name   = each.value.policy_name
-#   role   = aws_iam_role.this[each.value.role_name].name
-#   policy = each.value.policy_json
-# }
 
 resource "aws_iam_role_policy_attachment" "this" {
   for_each = {

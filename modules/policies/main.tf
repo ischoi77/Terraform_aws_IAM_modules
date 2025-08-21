@@ -1,3 +1,13 @@
+/*
+Title: 대규모 infra 구성 및 관리를 위한 AWS IAM 모듈
+Author: 최인석(Choi In-seok)
+Email: ischoi77@gmail.com, knight7711@naver.com
+Created: 2025-07-15
+Description: AWS IAM Policies 모듈
+repo_url: https://github.com/ischoi77/Terraform_aws_IAM_modules
+Version: v1.0.0
+*/
+
 locals {
   # 모든 정책 파일 목록
   policy_files = fileset(var.policies.policy_dir, "*.json")

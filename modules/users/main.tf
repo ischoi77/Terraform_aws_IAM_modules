@@ -1,42 +1,18 @@
-# locals {
-#   users_raw = csvdecode(file(var.user_csv_file))
+/*
+Title: 대규모 infra 구성 및 관리를 위한 AWS IAM 모듈
+Author: 최인석(Choi In-seok)
+Email: ischoi77@gmail.com, knight7711@naver.com
+Created: 2025-07-15
+Description: AWS IAM User 모듈
+repo_url: https://github.com/ischoi77/Terraform_aws_IAM_modules
+Version: v1.0.0
+*/
 
-#   users = {
-#     for u in local.users_raw : u.username => {
-#       username = u.username
-#       policies = u.policies == "" ? [] : split(",", u.policies)
-#       groups   = u.groups == "" ? [] : split(",", u.groups)
-#     }
-#   }
 
-#   user_policy_pairs = flatten([
-#     for user_key, user in local.users : [
-#       for policy in user.policies : {
-#         user_key   = user_key
-#         policy_key = trimspace(policy)
-#       }
-#     ]
-#   ])
-
-#   user_group_map = {
-#     for user_key, user in local.users : user_key => [
-#       for g in user.groups :
-#       trimspace(g)
-#       if contains(var.group_names, trimspace(g))
-#     ]
-#   }
-# }
 
 locals {
   users_raw = csvdecode(file(var.user_csv_file))
 
-  # parse_tags = function(tag_str) {
-  #   tag_str == "" ? {} :
-  #   {
-  #     for pair in split(";", tag_str) :
-  #     trimspace(split("=", pair)[0]) => trimspace(split("=", pair)[1])
-  #   }
-  # }
 
   users = {
     for u in local.users_raw : u.username => {
